@@ -4,6 +4,8 @@ from bcdd import crypto, data, color, option
 
 class Main:
     def __init__(self):
+        color.ColoredText().display("Welcome to the Battle Cats Dat Decryptor!")
+        color.ColoredText().display("Made by <green>fieryhenry</>\n")
         self.print_file_names()
         cc = self.select_cc()
         if cc is None:
@@ -31,6 +33,7 @@ class Main:
         }
         for name, file_name in file_names.items():
             color.ColoredText().display(f"  <green>{name}</>: {file_name}")
+        print()
 
     def run(self):
         while True:

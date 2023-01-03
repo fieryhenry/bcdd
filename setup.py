@@ -10,7 +10,7 @@ setuptools.setup(
     name="bcdd",
     version=version,
     author="fieryhenry",
-    description="",
+    description="A tool for decrypting and encrypting battle cats .dat files",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/fieryhenry/bcdd",

@@ -93,7 +93,11 @@ class Main:
         if file is None:
             return
         file_name = file.get_file_name_without_extension()
-        default_path = file.parent().add(file_name + "_encrypted.dat")
+        if file_name.endswith("_decrypted"):
+            file_name = file_name.replace("_decrypted", "_encrypted")
+        else:
+            file_name += "_encrypted"
+        default_path = file.parent().add(file_name + ".dat")
         output_file = option.FileSelector(
             "Select an output file", Main.get_dat_file_type()
         ).save(default_path)

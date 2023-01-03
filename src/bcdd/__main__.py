@@ -81,11 +81,15 @@ class Main:
             f"Decrypting <green>{file}</> to <green>{output_file}</>..."
         )
         key = crypto.Hash(crypto.HashAlgorithm.MD5, data.Data("battlecats")).get_hash(
-            16
-        )
-        aes_cipher = crypto.AesCipher(key.to_bytes())
+            8
+        ).to_hex()
+        aes_cipher = crypto.AesCipher(data.Data(key).to_bytes())
         file_data = file.read()
         decrypted = aes_cipher.decrypt(file_data[:-32])
+        try:
+            decrypted = decrypted.unpad_pkcs7()
+        except ValueError:
+            pass
 
         output_file.write(decrypted)
 
@@ -112,10 +116,16 @@ class Main:
             f"Encrypting <green>{file}</> to <green>{output_file}</>..."
         )
         key = crypto.Hash(crypto.HashAlgorithm.MD5, data.Data("battlecats")).get_hash(
-            16
-        )
-        aes_cipher = crypto.AesCipher(key.to_bytes())
-        encrypted = aes_cipher.encrypt(file.read())
+            8
+        ).to_hex()
+        aes_cipher = crypto.AesCipher(data.Data(key).to_bytes())
+        file_data = file.read()
+        try:
+            file_data = file_data.unpad_pkcs7()
+        except ValueError:
+            pass
+        file_data = file_data.pad_pkcs7()
+        encrypted = aes_cipher.encrypt(file_data)
 
         salt = data.Data(f"battlecats{self.cc_str}")
 

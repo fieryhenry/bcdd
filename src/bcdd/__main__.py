@@ -1,6 +1,6 @@
 import sys
 from typing import Optional
-from bcdd import crypto, data, color, option
+from bcdd import crypto, data, color, option, updater
 
 
 class Main:
@@ -34,6 +34,11 @@ class Main:
     def run(self):
         color.ColoredText().display("Welcome to the Battle Cats Dat Decryptor!")
         color.ColoredText().display("Made by <green>fieryhenry</>\n")
+        updated = updater.Updater().check_update()
+        if updated:
+            color.ColoredText().display("Please restart the program to use the new version.\n")
+            self.exit()
+
         self.print_file_names()
         cc = self.select_cc()
         if cc is None:

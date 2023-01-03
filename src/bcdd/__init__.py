@@ -1,3 +1,3 @@
-from bcdd import crypto, data, path, color, option
+from bcdd import crypto, data, path, color, option, updater
 
-__all__ = ["crypto", "data", "path", "color", "option"]
+__all__ = ["crypto", "data", "path", "color", "option", "updater"]

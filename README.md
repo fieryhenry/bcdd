@@ -36,7 +36,7 @@ The .dat file names are long and correspond to the following data:
 
 If you're interested the file name is the md5 hash of `event_0`, `ad`, `event_2`, etc
 
-Once you have located the files you need to get access to them on your pc, so copy them to a place that you can access without root (e.g Documents) and connect your device to your pc, or just send them to your self.
+Once you have located the files you need to get access to them on your pc, so copy them to a place that you can access without root (e.g Documents) and connect your device to your pc, or just send them to yourself.
 
 ### Decrypting Data
 Now that you have the files you then need to run the tool (see above in the `Run` section).
@@ -64,6 +64,6 @@ py -m pip install -e bcdd/
 py -m bcdd
 ```
 
-If you want to use the tool again all you need to do is run the `py -m bcdd command
+If you want to use the tool again all you need to do is run the `py -m bcdd` command
 
 Then if you want the latest changes you only need to run `git pull` in the downloaded `bcdd` folder. (use `cd` to change the folder)

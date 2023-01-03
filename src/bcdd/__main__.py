@@ -4,15 +4,10 @@ from bcdd import crypto, data, color, option
 
 class Main:
     def __init__(self):
-        color.ColoredText().display("Welcome to the Battle Cats Dat Decryptor!")
-        color.ColoredText().display("Made by <green>fieryhenry</>\n")
-        self.print_file_names()
-        cc = self.select_cc()
-        if cc is None:
+        try:
+            self.run()
+        except KeyboardInterrupt:
             self.exit()
-        self.cc = cc
-        self.cc_str = cc.replace("jp", "")
-        self.run()
     
     def select_cc(self) -> Optional[str]:
         ccs = ["en", "jp", "kr", "tw"]
@@ -36,11 +31,20 @@ class Main:
         print()
 
     def run(self):
+        color.ColoredText().display("Welcome to the Battle Cats Dat Decryptor!")
+        color.ColoredText().display("Made by <green>fieryhenry</>\n")
+        self.print_file_names()
+        cc = self.select_cc()
+        if cc is None:
+            self.exit()
+        self.cc = cc
+        self.cc_str = cc.replace("jp", "")
         while True:
-            try:
-                self.first_menu()
-            except KeyboardInterrupt:
-                self.exit()
+            self.first_menu()
+    
+    @staticmethod
+    def get_dat_file_type() -> list[tuple[str, str]]:
+        return [("Dat Files", "dat"), ("All files", "*")]
             
     def first_menu(self):
         items = [
@@ -55,12 +59,12 @@ class Main:
         items[index].run()
     
     def decrypt(self):
-        file = option.FileSelector("Select a .dat file to decrypt", [("dat files", "dat"), ("All files", "*")]).get()
+        file = option.FileSelector("Select a .dat file to decrypt", Main.get_dat_file_type()).get()
         if file is None:
             return
         file_name = file.get_file_name_without_extension()
         default_path = file.parent().add(file_name + "_decrypted.dat")
-        output_file = option.FileSelector("Select an output file", [("dat files", "dat"), ("All files", "*")]).save(default_path)
+        output_file = option.FileSelector("Select an output file", Main.get_dat_file_type()).save(default_path)
         if output_file is None:
             return
         color.ColoredText().display(f"Decrypting <green>{file}</> to <green>{output_file}</>...")
@@ -72,12 +76,12 @@ class Main:
         output_file.write(decrypted)
 
     def encrypt(self):
-        file = option.FileSelector("Select a .dat file to encrypt", [("dat files", "dat"), ("All files", "*")]).get()
+        file = option.FileSelector("Select a .dat file to encrypt", Main.get_dat_file_type()).get()
         if file is None:
             return
         file_name = file.get_file_name_without_extension()
         default_path = file.parent().add(file_name + "_encrypted.dat")
-        output_file = option.FileSelector("Select an output file", [("dat files", "dat"), ("All files", "*")]).save(default_path)
+        output_file = option.FileSelector("Select an output file", Main.get_dat_file_type()).save(default_path)
         if output_file is None:
             return
         color.ColoredText().display(f"Encrypting <green>{file}</> to <green>{output_file}</>...")

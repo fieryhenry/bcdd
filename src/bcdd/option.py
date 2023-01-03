@@ -137,7 +137,7 @@ class FileSelector:
                 return None
             return [path.Path(pt) for pt in paths]
         pt = filedialog.askopenfilename(title=self.title, filetypes=self.filetypes)
-        if not path:
+        if not pt:
             return None
         return path.Path(pt)
     

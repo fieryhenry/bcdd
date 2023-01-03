@@ -8,7 +8,8 @@ class Path:
     def __init__(self, path: str, is_relative: bool = False):
         if is_relative:
             self.path = self.get_relative_path(path)
-        self.path = path
+        else:
+            self.path = path
     
     def get_relative_path(self, path: str) -> str:
         return os.path.join(self.get_files_folder().path, path)

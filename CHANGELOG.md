@@ -6,4 +6,5 @@
 
 - Fixed issue with decryption / encryption key being 2x as long as it should be.
 
-- Fixed issue with padding not being removed from decrypted data or added to encrypted data.
+- Fixed issue with padding not being removed from decrypted data or added to
+  encrypted data.

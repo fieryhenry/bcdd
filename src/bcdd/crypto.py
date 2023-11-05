@@ -79,10 +79,7 @@ class AesCipher:
     @staticmethod
     def decrypt_dat(dt: "data.Data") -> "data.Data":
         decrypted = AesCipher.get_dat_cipher().decrypt(dt[:-32])
-        try:
-            decrypted = decrypted.unpad_pkcs7()
-        except ValueError:
-            pass
+        decrypted = decrypted.unpad_pkcs7() or decrypted
         return decrypted
 
     @staticmethod

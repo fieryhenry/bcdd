@@ -230,15 +230,15 @@ class Data:
         pad = block_size - (len(self.data) % block_size)
         return Data(self.data + bytes([pad] * pad))
 
-    def unpad_pkcs7(self) -> "Data":
+    def unpad_pkcs7(self) -> Optional["Data"]:
         try:
             pad = self.data[-1]
         except IndexError:
-            raise ValueError("Cannot unpad empty data")
+            return None
         if pad > len(self.data):
-            raise ValueError("Invalid padding")
+            return None
         if self.data[-pad:] != bytes([pad] * pad):
-            raise ValueError("Invalid padding")
+            return None
         return Data(self.data[:-pad])
 
     def pad_zeroes(self, block_size: int = 16) -> "Data":

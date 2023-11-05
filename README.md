@@ -1,11 +1,13 @@
 # Battle Cats Dat Decryptor
 
 The Battle Cats Dat Decryptor (BCDD) is a tool made for decrypting, encrypting
-and hashing  battle cats event data that is stored in the /files directory of
+and hashing battle cats event data that is stored in the /files directory of
 the game data. atm there is limited functionality but in the future I plan to be
 able to modify the event data directly in the tool.
 
 PyPI: <https://pypi.org/project/bcdd/>
+
+Example of what you can do by modifying the data: <https://youtu.be/BXmZT66KS_o?si=TGmJyt3bO8a4XylC>
 
 ## How To Use
 

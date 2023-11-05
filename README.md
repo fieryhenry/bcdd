@@ -14,11 +14,12 @@ Example of what you can do by modifying the data: <https://youtu.be/BXmZT66KS_o?
 ### Prerequisites
 
 - [Python](https://www.python.org/downloads/) for running and installing the tool
-Run the following commands in command prompt or another terminal to install the
-tool - If you are not using windows you will need to use `python` or `python3`
-instead of `py`
 
 ### Installation
+
+Run the following commands in command prompt or another terminal to install the
+tool - If you are not using windows you will need to use `python` or `python3`
+instead of `py`:
 
 ```bash
 py -m pip install -U bcdd

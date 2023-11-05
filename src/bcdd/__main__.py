@@ -36,7 +36,9 @@ class Main:
         color.ColoredText().display("Made by <green>fieryhenry</>\n")
         updated = updater.Updater().check_update()
         if updated:
-            color.ColoredText().display("Please restart the program to use the new version.\n")
+            color.ColoredText().display(
+                "Please restart the program to use the new version.\n"
+            )
             self.exit()
 
         self.print_file_names()
@@ -80,16 +82,15 @@ class Main:
         color.ColoredText().display(
             f"Decrypting <green>{file}</> to <green>{output_file}</>..."
         )
-        key = crypto.Hash(crypto.HashAlgorithm.MD5, data.Data("battlecats")).get_hash(
-            8
-        ).to_hex()
+        key = (
+            crypto.Hash(crypto.HashAlgorithm.MD5, data.Data("battlecats"))
+            .get_hash(8)
+            .to_hex()
+        )
         aes_cipher = crypto.AesCipher(data.Data(key).to_bytes())
         file_data = file.read()
         decrypted = aes_cipher.decrypt(file_data[:-32])
-        try:
-            decrypted = decrypted.unpad_pkcs7()
-        except ValueError:
-            pass
+        decrypted = decrypted.unpad_pkcs7() or decrypted
 
         output_file.write(decrypted)
 
@@ -115,15 +116,14 @@ class Main:
         color.ColoredText().display(
             f"Encrypting <green>{file}</> to <green>{output_file}</>..."
         )
-        key = crypto.Hash(crypto.HashAlgorithm.MD5, data.Data("battlecats")).get_hash(
-            8
-        ).to_hex()
+        key = (
+            crypto.Hash(crypto.HashAlgorithm.MD5, data.Data("battlecats"))
+            .get_hash(8)
+            .to_hex()
+        )
         aes_cipher = crypto.AesCipher(data.Data(key).to_bytes())
         file_data = file.read()
-        try:
-            file_data = file_data.unpad_pkcs7()
-        except ValueError:
-            pass
+        file_data = file_data.unpad_pkcs7() or file_data
         file_data = file_data.pad_pkcs7()
         encrypted = aes_cipher.encrypt(file_data)
 
